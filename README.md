@@ -13,4 +13,4 @@ Set the repository's Pages source to the `main` branch and `/` folder. The page 
 - Edit `styles.css` for visual changes and print rules.
 - Use the print button in the page to save a PDF.
 
-This first version intentionally omits a phone number, email address, and exact employment dates because they were not present in the source materials reviewed. Education is summarized as provided; school names and degree dates can be added when the earlier resume is available.
+The page combines the July 2024 resume with later work notes. It includes the employment and education dates available in those sources, the listed email and phone contacts, and selected current projects. Review contact details and timeline before reusing this material for a new application.
