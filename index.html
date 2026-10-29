@@ -67,26 +67,56 @@
         <article class="experience-card">
           <div class="experience-rail"><span class="rail-dot"></span><span class="rail-line"></span><span class="rail-label" data-i18n="rolePeriod">2024.08 — 至今</span></div>
           <div class="experience-main">
-            <div class="experience-header"><div><p class="company" data-i18n="company">Sahara Labs</p><h3 data-i18n="role">区块链研发 · Agent / 开发者平台后端</h3></div><span class="date-chip">2024.08 — <span data-i18n="present">至今</span></span></div>
-            <p class="role-summary" data-i18n="roleSummary">先后参与区块链节点与存储基础设施、开发者数据平台，以及 Agent API 与 MCP 工具服务化；覆盖用量计量、流式请求、状态恢复和 API 性能优化。</p>
-            <div class="achievement-grid">
-              <div class="achievement"><span class="achievement-index">01</span><div><h4 data-i18n="achievement1Title">为不确定成本的模型请求设计计量边界</h4><p data-i18n="achievement1">构建 reserve → commit → refund 计量结算流程，并根据预留额度约束模型输出上限，让额度检查、实际用量和结算保持一致。</p></div></div>
-              <div class="achievement"><span class="achievement-index">02</span><div><h4 data-i18n="achievement2Title">把市场数据接入 Agent 工具生态</h4><p data-i18n="achievement2">将加密市场数据封装为 5 个只读 MCP 工具；在网关侧实现 API Key 生命周期、配额、用量结算与审计。</p></div></div>
-              <div class="achievement"><span class="achievement-index">03</span><div><h4 data-i18n="achievement3Title">优化流式请求与故障回收</h4><p data-i18n="achievement3">覆盖请求超时、跨实例取消、客户端断连和结算幂等，减少长请求与部分失败情况下的资源和账务偏差。</p></div></div>
-              <div class="achievement"><span class="achievement-index">04</span><div><h4 data-i18n="achievement4Title">把高并发查询从 20 多秒降到百毫秒级</h4><p data-i18n="achievement4">重做 API Key 校验路径，从逐个 bcrypt 检查的 O(n) 优化到 O(1)，配合预热与缓存处理高并发 K 线查询。</p></div></div>
-              <div class="achievement"><span class="achievement-index">05</span><div><h4 data-i18n="achievement5Title">深入区块链节点与状态存储</h4><p data-i18n="achievement5">参与 Cosmos SDK / CometBFT 节点、IAVL 与 MemIAVL 存储链路，处理 snapshot、WAL 追赶、恢复与启动问题。</p></div></div>
+            <div class="experience-header"><div><p class="company" data-i18n="company">Sahara AI · Sahara Labs</p><h3 data-i18n="role">区块链、数据平台与 Agent 基础设施</h3></div><span class="date-chip">2024.08 — <span data-i18n="present">至今</span></span></div>
+            <p class="role-summary" data-i18n="roleSummary">2024 年加入 Sahara AI，持续参与主链与 EVM 兼容、状态存储与恢复、数据/API 平台、Agent 工具和服务化。工作覆盖协议与存储代码、生产 API、可观测性、数据库迁移及部署。</p>
+            <div class="sahara-workstreams">
+              <article class="workstream">
+                <div class="workstream-top"><span data-i18n="chainPeriod">2024 — 2025 · 协议与执行</span><span>01</span></div>
+                <h4 data-i18n="chainTitle">主链、EVM 与 Layer 2 集成</h4>
+                <ul><li data-i18n="chain1">扩展 Ethereum JSON-RPC 与交易生命周期能力，包括 eth_createAccessList（EIP-2930）、账户/区块/交易查询与过滤器；补齐合约、交易、RPC、API、订阅与升级测试，修复 latest 查询空值和合约 revert 错误回传。</li><li data-i18n="chain2">打通 OP Stack L2 与 Cosmos 链的部署和交互，验证存款/提款、ERC-20 与原生资产转账；参与 EIP-7702 / Prague 与 voting-power 升级的治理、兼容检查和测试网验证。</li><li data-i18n="chain3">优化同发送方、同 nonce 交易替换策略及账户 nonce / 交易解码缓存；参与主网 slashing、费用分配、mint、periodic vesting 和 validator 奖励模块调整。</li></ul>
+                <div class="work-meta"><span data-i18n="techLabel">技术</span><p>Go · Cosmos SDK · CometBFT · EVM / JSON-RPC · OP Stack · EIP-2930 / EIP-7702</p></div>
+                <div class="work-meta"><span data-i18n="abilityLabel">能力</span><p data-i18n="chainAbility">跨协议集成 · RPC/API 兼容 · 交易全链路理解 · 升级与测试网验证</p></div>
+              </article>
+              <article class="workstream">
+                <div class="workstream-top"><span data-i18n="storagePeriod">2025 · 存储、同步与恢复</span><span>02</span></div>
+                <h4 data-i18n="storageTitle">状态树性能与节点可靠性</h4>
+                <ul><li data-i18n="storage1">集成并维护 MemIAVL / VersionDB；优化 snapshot 树遍历与批量 I/O，排查内存泄漏、递归深度、pruning 阻塞和 WAL catch-up 瓶颈。</li><li data-i18n="storage2">设计并验证空库启动、旧数据重启、远程 state sync、snapshot/WAL 恢复和 validator 场景；其中一类远程同步重启路径的测试耗时较原方案缩短一半以上，并修复 app-hash mismatch 自动 rollback/replay。</li><li data-i18n="storage3">完成 IAVL 版本迁移与 TEE light-client / proof 校验修复，定位 storage proof hash 不一致根因，修复归档查询空值与区块/交易索引顺序，并补齐测试、文档、CI/CD 与发布。</li></ul>
+                <div class="work-meta"><span data-i18n="techLabel">技术</span><p>Go · IAVL / MemIAVL · VersionDB · snapshot / WAL · Merkle proof · pprof</p></div>
+                <div class="work-meta"><span data-i18n="abilityLabel">能力</span><p data-i18n="storageAbility">性能剖析 · 状态一致性 · 故障恢复 · 多进程/多节点问题定位 · 系统化回归验证</p></div>
+              </article>
+              <article class="workstream">
+                <div class="workstream-top"><span data-i18n="dataPeriod">2025 — 2026 · 数据平台与生产 API</span><span>03</span></div>
+                <h4 data-i18n="dataTitle">从外部数据接入到可观测服务</h4>
+                <ul><li data-i18n="data1">参与 crypto-knowledge-base 中 PreListing、Arkham、Opinion、Polymarket 等数据模块建设；接收 webhook 与第三方 data-feed，持久化并通过 Redis 广播，交付分页 REST API 与前后端订阅管理。</li><li data-i18n="data2">支持 Polymarket 趋势、K 线分析与告警，并实现 AI 标签回填后的幂等广播；将 API Key 校验从逐个 bcrypt 的 O(n) 路径改为 O(1)，配合预热、缓存和 miss 去重，把高并发 K 线查询从 20 多秒降到百毫秒级。</li><li data-i18n="data3">为 PostgreSQL、Redis、缓存和 API 建立耗时埋点、trace、日志拆分、健康检查与告警；处理空库 bootstrap 与在线 migration 的差异，并完善 Docker Compose 数据持久化、环境配置和测试环境自动部署。</li></ul>
+                <div class="work-meta"><span data-i18n="techLabel">技术</span><p>Node.js · TypeScript · PostgreSQL · MikroORM · Redis · REST / Webhook · Docker Compose · CI/CD · Observability</p></div>
+                <div class="work-meta"><span data-i18n="abilityLabel">能力</span><p data-i18n="dataAbility">API 性能工程 · 数据管道与异步广播 · 前后端联调 · 生产排障 · 数据库迁移与发布</p></div>
+              </article>
+              <article class="workstream">
+                <div class="workstream-top"><span data-i18n="agentPeriod">2025 — 2026 · Agent 工具与工作流</span><span>04</span></div>
+                <h4 data-i18n="agentTitle">MCP 工具接入与多 Agent 行情研究</h4>
+                <ul><li data-i18n="agent1">为 Goose 接入 Hyperliquid MCP，并编写扩展与使用文档，打通工具调用和市场数据查询。</li><li data-i18n="agent2">接入 CoinGecko OHLC MCP，组合 Research Hints、Skills、Recipe / Subrecipe，构建可复用的行情研究与多 Agent 分析流程。</li><li data-i18n="agent3">持续迭代提示词、工具和工作流，比较分析过程与结果，沉淀 MCP / Goose 集成方案和 Recipe 文档。</li></ul>
+                <div class="work-meta"><span data-i18n="techLabel">技术</span><p>Goose · MCP · Hyperliquid · CoinGecko OHLC · Skills · Recipe / Subrecipe</p></div>
+                <div class="work-meta"><span data-i18n="abilityLabel">能力</span><p data-i18n="agentAbility">Agent 工具集成 · 工作流设计 · 多 Agent 任务编排 · 提示词与工具效果迭代</p></div>
+              </article>
+              <article class="workstream">
+                <div class="workstream-top"><span data-i18n="gatewayPeriod">2026 · API 网关与 Agent 产品化</span><span>05</span></div>
+                <h4 data-i18n="gatewayTitle">TaaS / AaaS、API 网关与模型代理</h4>
+                <ul><li data-i18n="gateway1">建设 DIP Gateway 并交付 dev / prod 环境，落地可配置限流、接口白名单、多级缓存、流式转发与自动部署，补充日志、trace、metrics 和数据库连接池治理。</li><li data-i18n="gateway2">将 DIP 数据 API 封装为 5 个只读 MCP 工具，并支持 scoped API key、免费/付费数据权限、配额与调用计量，通过网关执行访问控制；参与 Sorin 用户身份映射、Token Exchange 和 DIP SDK 封装，以及桌面端多链、转账和兑换功能。</li><li data-i18n="gateway3">实现 AaaS 计量请求的 reserve → commit → refund、输出 token 上限、流式超时/取消、跨实例清理与幂等结算；搭建并验证 OpenRouter、Groq、Gemini 多 Provider 代理/账号池原型，开展延迟和并发测试。</li></ul>
+                <div class="work-meta"><span data-i18n="techLabel">技术</span><p>Java 21 · Spring Boot · Project Reactor（AaaS / TaaS）· PostgreSQL · Redis · MCP · JWT / Scoped API Key · SSE</p></div>
+                <div class="work-meta"><span data-i18n="abilityLabel">能力</span><p data-i18n="gatewayAbility">API 网关与访问控制 · 计量和成本治理 · 流式请求可靠性 · 多 Provider 接入 · 服务部署与容量验证</p></div>
+              </article>
             </div>
-            <div class="stack-line"><span data-i18n="stackLabel">相关技术</span><p>Go · Java · Spring Boot · PostgreSQL · Redis · MCP · Cosmos SDK · CometBFT</p></div>
+            <div class="stack-line"><span data-i18n="stackLabel">相关技术</span><p>Go · Java 21 · Spring Boot · Project Reactor · Node.js / TypeScript · PostgreSQL · Redis · Cosmos SDK · CometBFT · IAVL / MemIAVL · MCP · Docker</p></div>
           </div>
         </article>
         <div class="previous-roles">
           <article class="previous-role">
             <div class="previous-period">2023.10 — 2024.08</div>
-            <div class="previous-content"><p class="company">MANTLE &amp; DAPPLINK · PROTOCOL TEAM</p><h3 data-i18n="mantleRole">Layer 2 / Layer 3 协议研发</h3><ul><li data-i18n="mantle1">开发通用 Rollup 模块，集成 AnyTrust DA、EigenDA、NearDA、Celestia 和 EIP-4844，并改造 AnyTrust DA。</li><li data-i18n="mantle2">参与 Cosmos SDK 与 Rollup 集成，以及 Layer 2 Gas 代付、链下交易构建和 EstimateGas 优化。</li></ul></div>
+            <div class="previous-content"><p class="company">MANTLE &amp; DAPPLINK · PROTOCOL TEAM</p><h3 data-i18n="mantleRole">Layer 2 / Layer 3 协议研发</h3><ul><li data-i18n="mantle1">开发通用 Rollup 模块，集成 AnyTrust DA、EigenDA、NearDA、Celestia 和 EIP-4844，并改造 AnyTrust DA。</li><li data-i18n="mantle2">参与 Cosmos SDK 与 Rollup 集成，以及 Layer 2 Gas 代付、链下交易构建和 EstimateGas 优化。</li></ul><div class="work-meta"><span data-i18n="techLabel">技术</span><p>Go · Cosmos SDK · OP Stack · Rollup · AnyTrust / EigenDA / NearDA / Celestia · EIP-4844</p></div><div class="work-meta"><span data-i18n="abilityLabel">能力</span><p data-i18n="mantleAbility">模块化 DA 集成 · L2 交易构建与 Gas 估算 · 跨链栈适配</p></div></div>
           </article>
           <article class="previous-role">
             <div class="previous-period">2022.07 — 2023.10</div>
-            <div class="previous-content"><p class="company" data-i18n="quchainCompany">杭州趣链科技有限公司 · 基础平台部</p><h3 data-i18n="quchainRole">区块链研发工程师</h3><ul><li data-i18n="quchain1">参与交易去重与顺序执行、节点间区块同步、归档数据重建等平台能力研发。</li><li data-i18n="quchain2">参与自研 KV 存储优化：键值分离、减少冗余 WAL 写入、过期 value GC 与冷热分离方案设计。</li></ul></div>
+            <div class="previous-content"><p class="company" data-i18n="quchainCompany">杭州趣链科技有限公司 · 基础平台部</p><h3 data-i18n="quchainRole">区块链研发工程师</h3><ul><li data-i18n="quchain1">参与交易去重与顺序执行、节点间区块同步、归档数据重建等平台能力研发。</li><li data-i18n="quchain2">参与自研 KV 存储优化：键值分离、减少冗余 WAL 写入、过期 value GC 与冷热分离方案设计。</li></ul><div class="work-meta"><span data-i18n="techLabel">技术</span><p>Go · Hyperchain · Gossip · Bloom filter · 自研 KV / VIDB · LevelDB</p></div><div class="work-meta"><span data-i18n="abilityLabel">能力</span><p data-i18n="quchainAbility">交易状态与顺序控制 · 节点同步 · 存储布局与 GC · 低层性能调优</p></div></div>
           </article>
         </div>
       </section>
